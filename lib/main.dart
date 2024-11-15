@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -5,7 +6,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:xyz_bank/constant.dart';
 import 'package:xyz_bank/views/home/home_view.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const XyzBank());
 }
 
@@ -26,7 +33,6 @@ class _XyzBankState extends State<XyzBank> {
       ),
     ],
   );
-
 
   _createTheme(BuildContext context) {
     return ThemeData().copyWith(

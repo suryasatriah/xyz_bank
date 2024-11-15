@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "283556723453",
+    "project_id": "xyz-bank-8b659",
+    "storage_bucket": "xyz-bank-8b659.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283556723453:android:b14ea946be29e1cb149c94",
+        "android_client_info": {
+          "package_name": "com.example.xyz_bank"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNa5n-_l_cJ_VBd1Mp_62T9kVNEpSnJzc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

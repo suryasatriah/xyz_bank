@@ -1,7 +1,9 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:xyz_bank/constant.dart';
 import 'package:xyz_bank/models/account.dart';
+import 'package:xyz_bank/views/explorer/explorer_view.dart';
 import 'package:xyz_bank/views/home/widgets/home_header.dart';
 import 'package:xyz_bank/widgets/image_button.dart';
 
@@ -14,9 +16,35 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final Account account = kAccount;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    FirebaseAnalytics.instance.logScreenView(screenName: "Main Screen");
+  }
 
   @override
   Widget build(BuildContext context) {
+    void launchExplorer() {
+      FirebaseAnalytics.instance.logEvent(
+        name: 'event_name',
+        parameters: <String, Object>{
+          'string_parameter': 'string',
+          'int_parameter': 42,
+        },
+      );
+      showDialog(
+        context: context,
+        barrierColor: Colors.black.withOpacity(0.5),
+        builder: (BuildContext context) {
+          return StatefulBuilder(
+            builder: (BuildContext context, StateSetter setState) {
+              return const ExplorerView();
+            },
+          );
+        },
+      );
+    }
+
     return Scaffold(
       body: Stack(
         children: [
@@ -59,7 +87,8 @@ class _HomeViewState extends State<HomeView> {
                               children: [
                                 ImageButton(
                                     name:
-                                        "assets/images/home/ic_home_explorer.png"),
+                                        "assets/images/home/ic_home_explorer.png",
+                                    onTap: () => launchExplorer()),
                                 ImageButton(
                                     name:
                                         "assets/images/home/ic_home_live_chat.png"),

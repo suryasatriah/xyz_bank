@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:xyz_bank/constant.dart';
 import 'package:xyz_bank/models/account.dart';
-import 'package:xyz_bank/util.dart';
+import 'package:xyz_bank/utils/constant.dart';
+import 'package:xyz_bank/utils/dolphin_util.dart';
 import 'package:xyz_bank/views/home/widgets/home_header_menu.dart';
 
 class HomeHeader extends StatefulWidget {
@@ -48,7 +48,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                           Row(
                             children: [
                               Text(
-                                Util.formatAccountNumber(account.number),
+                                DolphinUtil.formatAccountNumber(account.number),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
@@ -95,7 +95,7 @@ class _HomeHeaderState extends State<HomeHeader> {
                         : Row(
                             children: [
                               Text(
-                                "IDR " + Util.formatCurrency(account.balance),
+                                "IDR " + DolphinUtil.formatCurrency(account.balance),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!

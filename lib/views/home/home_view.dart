@@ -1,8 +1,8 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:xyz_bank/constant.dart';
 import 'package:xyz_bank/models/account.dart';
+import 'package:xyz_bank/utils/constant.dart';
 import 'package:xyz_bank/views/explorer/explorer_view.dart';
 import 'package:xyz_bank/views/home/widgets/home_header.dart';
 import 'package:xyz_bank/widgets/image_button.dart';

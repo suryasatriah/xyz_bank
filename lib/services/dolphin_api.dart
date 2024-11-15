@@ -4,10 +4,10 @@ import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:dio/dio.dart';
-import 'package:xyz_bank/constant.dart';
 import 'package:xyz_bank/models/result.dart';
 import 'package:xyz_bank/services/dolphin_dio.dart';
 import 'package:xyz_bank/services/dolphin_logger.dart';
+import 'package:xyz_bank/utils/constant.dart';
 
 class DolphinApi {
   static const String kEndpointPredictUi =

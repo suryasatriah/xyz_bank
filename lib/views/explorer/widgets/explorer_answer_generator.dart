@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
 import 'package:xyz_bank/services/dolphin_api.dart';
-import 'package:xyz_bank/util.dart';
+import 'package:xyz_bank/utils/dolphin_util.dart';
 import 'package:xyz_bank/views/explorer/provider/explorer_provider.dart';
 import 'package:xyz_bank/views/explorer/widgets/explorer_loading.dart';
 
@@ -16,8 +16,7 @@ class ExplorerAnswerGenerator extends StatefulWidget {
       _ExplorerAnswerGeneratorState();
 }
 
-class _ExplorerAnswerGeneratorState extends State<ExplorerAnswerGenerator>
-     {
+class _ExplorerAnswerGeneratorState extends State<ExplorerAnswerGenerator> {
   late ExplorerProvider explorerProvider;
   late Stream<String> _stream;
 
@@ -51,7 +50,12 @@ class _ExplorerAnswerGeneratorState extends State<ExplorerAnswerGenerator>
           case ConnectionState.active:
           case ConnectionState.done:
             if (snapshot.hasError) {
-              displayText = const Text('Error');
+              displayText = Text(
+                "System currently under maintenance. Please try again later.",
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      fontWeight: FontWeight.w400,
+                    ),
+              );
             } else {
               displayText = generateAnswerWidget(snapshot.data);
             }
@@ -136,7 +140,7 @@ class _ExplorerAnswerGeneratorState extends State<ExplorerAnswerGenerator>
     if (data.contains("{")) {
       return explorerProvider.populateAnswerJson(data);
     } else {
-      return Util.decodeUtf8(data);
+      return DolphinUtil.decodeUtf8(data);
     }
   }
 }

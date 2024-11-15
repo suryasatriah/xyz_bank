@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:xyz_bank/services/dolphin_logger.dart';
 
-class Util {
+class DolphinUtil {
   static final DolphinLogger dolphinLogger = DolphinLogger.instance;
 
   static String decodeUtf8(String input) {

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:xyz_bank/constant.dart';
+import 'package:xyz_bank/utils/constant.dart';
 import 'package:xyz_bank/views/explorer/provider/dolphin_provider.dart';
 import 'package:xyz_bank/views/explorer/provider/explorer_provider.dart';
 import 'package:xyz_bank/views/home/home_view.dart';

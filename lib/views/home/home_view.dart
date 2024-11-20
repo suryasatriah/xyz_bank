@@ -1,6 +1,7 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:xyz_bank/models/account.dart';
 import 'package:xyz_bank/utils/constant.dart';
 import 'package:xyz_bank/views/explorer/explorer_view.dart';
@@ -90,8 +91,10 @@ class _HomeViewState extends State<HomeView> {
                                         "assets/images/home/ic_home_explorer.png",
                                     onTap: () => launchExplorer()),
                                 ImageButton(
-                                    name:
-                                        "assets/images/home/ic_home_live_chat.png"),
+                                  name:
+                                      "assets/images/home/ic_home_live_chat.png",
+                                  onTap: () => {context.go("/livechat")},
+                                ),
                                 ImageButton(
                                     name:
                                         "assets/images/home/ic_home_notification.png"),

@@ -44,4 +44,5 @@ flutter:
   assets:
     - assets/images/
     - assets/images/home/
+    - assets/images/transfer/
     - google_fonts/

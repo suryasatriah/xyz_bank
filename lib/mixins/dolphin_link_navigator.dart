@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:xyz_bank/views/pln_pra/pln_pra_view.dart';
+import 'package:xyz_bank/views/transfer/transfer_amt_view.dart';
 
 mixin DolphinLinkNavigator {
   static const String kEndpointPlnPra = "/plnpra";
@@ -23,29 +25,29 @@ mixin DolphinLinkNavigator {
 
   void _handleIOSDeeplink(BuildContext context, Uri uri) {
     if (uri.path.contains(kEndpointPlnPra)) {
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => PlnPraScreen(
-      //       amount: uri.queryParameters['amt'],
-      //       destination: uri.queryParameters['dest'],
-      //     ),
-      //   ),
-      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PlnPraView(
+            amount: uri.queryParameters['amt'],
+            destination: uri.queryParameters['dest'],
+          ),
+        ),
+      );
     } else if (uri.path.contains('sukha')) {
       // Navigator.push(context,
       //     MaterialPageRoute(builder: (context) => const SukhaScreen()));
     } else if (uri.path.contains("transfer")) {
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: (context) => TransferScreen(
-      //               destinationName:
-      //                   uri.queryParameters['name'] ?? "10024520240810",
-      //               transferAmount: uri.queryParameters['amt'] ?? "0",
-      //               transferDestination:
-      //                   uri.queryParameters['dest'] ?? "Andriansyah Hakim",
-      //             ))).then((_) {});
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => TransferAmtView(
+                    destination:
+                        uri.queryParameters['name'] ?? "10024520240810",
+                    amount: uri.queryParameters['amt'] ?? "0",
+                    destinationName:
+                        uri.queryParameters['dest'] ?? "Andriansyah Hakim",
+                  ))).then((_) {});
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:xyz_bank/constants/constant_color.dart';
 
 class DolphinDropdownMenu1<T> extends StatefulWidget {
   final TextEditingController? controller;
@@ -42,9 +43,8 @@ class _DolphinDropdownMenu1State<T> extends State<DolphinDropdownMenu1<T>> {
     return Container(
       padding: EdgeInsets.all(4.r),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.r),
-        color: Colors.black12.withOpacity(0.1),
-      ),
+          borderRadius: BorderRadius.circular(20.r),
+          color: Color(ConstantColorHex.kColorHexBg2)),
       child: Row(
         children: [
           Expanded(

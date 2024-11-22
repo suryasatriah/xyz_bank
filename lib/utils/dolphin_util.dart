@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:intl/intl.dart';
+import 'package:xyz_bank/constants/constant_base.dart';
 import 'package:xyz_bank/services/dolphin_logger.dart';
 
 class DolphinUtil {
@@ -22,7 +23,22 @@ class DolphinUtil {
         .replaceAll(",", " ");
   }
 
-  static String formatCurrency(int amount) {
-    return NumberFormat("#,##0.00", "en_US").format(amount);
+  static String formatCurrency(dynamic amount) {
+    var numberFormat = NumberFormat(ConstantBase.kCurrencyNumberFormat);
+    var result = "0";
+
+    try {
+      if (amount is String) {
+        result = numberFormat.format(int.tryParse(amount));
+      } else if (amount is int || amount is double) {
+        result = numberFormat.format(amount);
+      } else {
+        throw Exception("input is not string, int, or double");
+      }
+    } catch (e, stack) {
+      dolphinLogger.e(e, stackTrace: stack);
+    }
+
+    return result.replaceAll(",", ".");
   }
 }

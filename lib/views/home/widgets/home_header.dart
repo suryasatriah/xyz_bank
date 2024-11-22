@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:xyz_bank/constants/constant_asset.dart';
 import 'package:xyz_bank/models/account.dart';
 import 'package:xyz_bank/utils/constant.dart';
 import 'package:xyz_bank/utils/dolphin_util.dart';
 import 'package:xyz_bank/views/home/widgets/home_header_menu.dart';
+import 'package:xyz_bank/views/transfer/transfer_view.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({
@@ -95,7 +97,8 @@ class _HomeHeaderState extends State<HomeHeader> {
                         : Row(
                             children: [
                               Text(
-                                "IDR " + DolphinUtil.formatCurrency(account.balance),
+                                "IDR " +
+                                    DolphinUtil.formatCurrency(account.balance),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyLarge!
@@ -120,9 +123,12 @@ class _HomeHeaderState extends State<HomeHeader> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     HomeHeaderMenu(
-                      name: "assets/images/home/ic_home_transfer.png",
-                      label: "Transfer",
-                    ),
+                        name: ConstantAsset.kAssetImgHomeTransfer,
+                        label: "Transfer",
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => TransferView()))),
                     HomeHeaderMenu(
                       name: "assets/images/home/ic_home_va.png",
                       label: "Bayar VA",

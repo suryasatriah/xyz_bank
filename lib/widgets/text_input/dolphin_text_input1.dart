@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:xyz_bank/constants/constant_color.dart';
 
 class DolphinTextInput1 extends StatefulWidget {
   final TextEditingController? controller;
@@ -51,7 +52,7 @@ class _DolphinTextInput1State extends State<DolphinTextInput1> {
       padding: EdgeInsets.all(4.r),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
-        color: Colors.black12.withOpacity(0.1),
+        color: Color(ConstantColorHex.kColorHexBg2),
       ),
       child: TextFormField(
         controller: controller,
@@ -60,13 +61,19 @@ class _DolphinTextInput1State extends State<DolphinTextInput1> {
         decoration: InputDecoration(
           label: widget.label != null ? Text(widget.label!) : null,
           labelStyle: style?.copyWith(
-              color: Colors.black.withOpacity(0.5),
+              color: Colors.black45,
               fontSize: 18.sp,
               fontWeight: FontWeight.w400),
-          alignLabelWithHint: true,
-          border: OutlineInputBorder(
+          enabledBorder: controller.text.isNotEmpty
+              ? OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.r),
+                  borderSide: const BorderSide(color: Colors.blue))
+              : OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16.r),
+                  borderSide: const BorderSide(color: Colors.transparent)),
+          focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.r),
-              borderSide: const BorderSide(color: Colors.black)),
+              borderSide: const BorderSide(color: Colors.blue)),
           suffixIcon: IconButton(
               onPressed: () {
                 setState(() {

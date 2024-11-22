@@ -9,8 +9,8 @@ import 'package:xyz_bank/utils/constant.dart';
 import 'package:xyz_bank/views/explorer/explorer_view.dart';
 import 'package:xyz_bank/views/explorer/provider/dolphin_provider.dart';
 import 'package:xyz_bank/views/explorer/provider/explorer_provider.dart';
+import 'package:xyz_bank/views/home/home_view.dart';
 import 'package:xyz_bank/views/live_chat/live_chat_view.dart';
-import 'package:xyz_bank/views/transfer/transfer_view.dart';
 
 import 'firebase_options.dart';
 
@@ -45,7 +45,8 @@ class _XyzBankState extends State<XyzBank> {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => TransferView(),
+        // builder: (context, state) => TransferView(),
+        builder: (context, state) => HomeView(),
       ),
       GoRoute(
         path: '/explorer',

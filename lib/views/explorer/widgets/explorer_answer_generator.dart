@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:provider/provider.dart';
+import 'package:xyz_bank/mixins/dolphin_link_navigator.dart';
 import 'package:xyz_bank/services/dolphin_api.dart';
 import 'package:xyz_bank/utils/dolphin_util.dart';
 import 'package:xyz_bank/views/explorer/provider/explorer_provider.dart';
@@ -16,7 +17,8 @@ class ExplorerAnswerGenerator extends StatefulWidget {
       _ExplorerAnswerGeneratorState();
 }
 
-class _ExplorerAnswerGeneratorState extends State<ExplorerAnswerGenerator> {
+class _ExplorerAnswerGeneratorState extends State<ExplorerAnswerGenerator>
+    with DolphinLinkNavigator {
   late ExplorerProvider explorerProvider;
   late Stream<String> _stream;
 
@@ -112,10 +114,10 @@ class _ExplorerAnswerGeneratorState extends State<ExplorerAnswerGenerator> {
                         trailing: IconButton(
                           onPressed: () => {
                             Navigator.pop(context),
-                            // navigateDeeplink(
-                            //   context,
-                            //   url: explorerProvider.button?.link ?? '',
-                            // )
+                            navigateDeeplink(
+                              context,
+                              url: explorerProvider.button?.link,
+                            ),
                           },
                           icon: const Icon(
                             Icons.arrow_outward,

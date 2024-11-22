@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
+import 'package:xyz_bank/utils/dolphin_util.dart';
 import 'package:xyz_bank/views/pln_pra/pln_pra_complete_screen.dart';
 import 'package:xyz_bank/views/pln_pra/widgets/pln_pra_header.dart';
 import 'package:xyz_bank/widgets/dolphin_app_bar.dart';
@@ -14,7 +14,6 @@ class PlnPraAmtScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NumberFormat occY = NumberFormat("#,##0.00", "en_US");
     return Scaffold(
       appBar: DolphinAppBar.appBar1(),
       body: SingleChildScrollView(
@@ -34,7 +33,7 @@ class PlnPraAmtScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("IDR ${occY.format(double.tryParse(amount!))}",
+                  Text("IDR ${DolphinUtil.formatCurrency(amount)}",
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 32.sp, fontWeight: FontWeight.w500))
                 ],

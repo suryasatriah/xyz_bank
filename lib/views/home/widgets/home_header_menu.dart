@@ -5,11 +5,13 @@ import 'package:xyz_bank/widgets/image_button.dart';
 class HomeHeaderMenu extends StatelessWidget {
   final String label;
   final String name;
+  final void Function()? onTap;
 
   const HomeHeaderMenu({
     super.key,
     required this.label,
     required this.name,
+    this.onTap,
   });
 
   @override
@@ -19,6 +21,7 @@ class HomeHeaderMenu extends StatelessWidget {
         ImageButton(
           name: name,
           height: 40.r,
+          onTap: onTap,
         ),
         Text(label),
       ],

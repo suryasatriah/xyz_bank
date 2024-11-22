@@ -1,14 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
+import 'package:xyz_bank/mixins/dolphin_link_navigator.dart';
 import 'package:xyz_bank/utils/constant.dart';
 import 'package:xyz_bank/views/live_chat/widgets/live_chat_app_bar.dart';
-import 'package:xyz_bank/views/transfer/transfer_amt_view.dart';
 
 class LiveChatView extends StatefulWidget {
   const LiveChatView({super.key});
@@ -17,7 +14,7 @@ class LiveChatView extends StatefulWidget {
   State<LiveChatView> createState() => _LiveChatViewState();
 }
 
-class _LiveChatViewState extends State<LiveChatView> {
+class _LiveChatViewState extends State<LiveChatView> with DolphinLinkNavigator {
   late WebViewController webViewController;
   late final PlatformWebViewControllerCreationParams params;
 
@@ -56,50 +53,8 @@ class _LiveChatViewState extends State<LiveChatView> {
           onPageFinished: (String url) {},
           onHttpError: (HttpResponseError error) {},
           onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) async {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              return NavigationDecision.prevent;
-            }
-
-            if (request.url.contains('sukha') ||
-                request.url.contains('transfer')) {
-              if ((Platform.isIOS || Platform.isAndroid) && mounted) {
-                var isNavigating = false;
-                if (!isNavigating) {
-                  isNavigating = true;
-                  if (request.url.contains('transfer')) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TransferAmtView(
-                                  destination: Uri.parse(request.url)
-                                          .queryParameters['name'] ??
-                                      "10024520240810",
-                                  amount: Uri.parse(request.url)
-                                          .queryParameters['amt'] ??
-                                      "0",
-                                  destinationName: Uri.parse(request.url)
-                                          .queryParameters['dest'] ??
-                                      "Andriansyah Hakim",
-                                ))).then((_) {
-                      isNavigating = false;
-                    });
-                  }
-                }
-
-                return NavigationDecision.prevent;
-              } else if (await canLaunchUrl(Uri.parse(request.url))) {
-                await launchUrl(Uri.parse(request.url),
-                    mode: LaunchMode.externalApplication);
-
-                return NavigationDecision.prevent;
-              } else {
-                return NavigationDecision.prevent;
-              }
-            }
-
-            return NavigationDecision.navigate;
-          },
+          onNavigationRequest: (NavigationRequest request) async =>
+              await handleNavigationRequest(context, request, mounted),
         ),
       )
       ..loadRequest(Uri.parse(kLiveChatEndpoint));
